@@ -3,6 +3,8 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         return NavigationView{
+            
+            // TODO: Add a Picker to select the audio input type
             List{
                 NavigationLink(destination: FFTExampleView()){
                     Image(systemName: "chart.bar.xaxis")
@@ -32,6 +34,12 @@ struct ContentView: View {
                     Image(systemName: "waveform.path.ecg.rectangle")
                     Text("Wavetable Array View")
                 }
+                
+                NavigationLink(destination: WaveformExampleView()){
+                    Image(systemName: "waveform")
+                    Text("Waveform View")
+                }
+                
             }
             .navigationBarTitle("AudioKitUI")
         }

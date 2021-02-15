@@ -2,13 +2,14 @@ import AudioKit
 import AVFoundation
 import Foundation
 import Accelerate
+import SwiftUI
 
 class Conductor : ObservableObject{
     
     /// Single shared data model
     static let shared = Conductor()
     
-    var testInputType : TestInputType = .player {
+    var testInputType : TestInputType = .microphone {
         didSet{
             setupAudioType()
         }
@@ -19,6 +20,10 @@ class Conductor : ObservableObject{
         
     /// default microphone
     var mic: AudioEngine.InputNode
+    
+    /// Mute the output, we only want to monitor
+    let masterFader : Fader
+    
     /// mixing node for microphone input - routes to plotting and recording paths
     let micMixer : Mixer
     /// mixer with no volume so that we don't output audio
@@ -69,7 +74,7 @@ class Conductor : ObservableObject{
         micMixer = Mixer(mic)
         
         // setup player
-        let url = URL(fileURLWithPath: Bundle.main.resourcePath! + "/AnyKindOfWay.mp3")
+        let url = URL(fileURLWithPath: Bundle.main.resourcePath! + "/track.mp3")
         do{
             file = try AVAudioFile(forReading: url)
         } catch{
@@ -96,8 +101,10 @@ class Conductor : ObservableObject{
         // route the silent Mixer to the limiter (you must always route the audio chain to AudioKit.output)
         outputLimiter = PeakLimiter(filter)
         
+        masterFader = Fader(outputLimiter)
+        
         // set the limiter as the last node in our audio chain
-        engine.output = outputLimiter
+        engine.output = masterFader
         
         //START AUDIOKIT
         do{
@@ -110,7 +117,7 @@ class Conductor : ObservableObject{
         
         osc.amplitude = 0.2
         osc.frequency = 500
-        silentMicMixer.volume = 0.0
+        silentMicMixer.volume = 1.0
         filter.cutoffFrequency = 20_000
         //filter.resonance = 10
         
@@ -120,10 +127,11 @@ class Conductor : ObservableObject{
         
     }
     
-    enum TestInputType {
-        case microphone
-        case oscillator
-        case player
+    enum TestInputType: String, Equatable, CaseIterable  {
+        case microphone = "Input"
+        case oscillator = "Oscillator"
+        case player = "MP3 File"
+        var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
     }
     
     @Published var oscillatorFloats : [Float] = []
@@ -257,9 +265,14 @@ class Conductor : ObservableObject{
         if testInputType == .oscillator {
             osc.play()
             player.stop()
+            masterFader.gain = 1.0
         } else if testInputType == .player {
             player.play()
             osc.stop()
+            masterFader.gain = 1.0
+        } else if testInputType == .microphone {
+            // Avoid feedback!
+            masterFader.gain = 0.0
         }
     }
     
