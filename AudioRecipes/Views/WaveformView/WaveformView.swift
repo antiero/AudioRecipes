@@ -61,14 +61,14 @@ struct WaveformView: View {
         self.node = node
         self._stereoMode = State(initialValue: stereoMode)
     }
-    init(_ node: Node, color: Color,stereoMode : StereoMode = .center, numberOfSegments: Int = 20){
-        self.node = node
-        self._stereoMode = State(initialValue: stereoMode)
-    }
-    init(_ node: Node, colors: Gradient,stereoMode : StereoMode = .center, numberOfSegments: Int = 20){
-        self.node = node
-        self._stereoMode = State(initialValue: stereoMode)
-    }
+//    init(_ node: Node, color: Color,stereoMode : StereoMode = .center, numberOfSegments: Int = 20){
+//        self.node = node
+//        self._stereoMode = State(initialValue: stereoMode)
+//    }
+//    init(_ node: Node, colors: Gradient,stereoMode : StereoMode = .center, numberOfSegments: Int = 20){
+//        self.node = node
+//        self._stereoMode = State(initialValue: stereoMode)
+//    }
     
     var body: some View {
        

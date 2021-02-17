@@ -75,6 +75,7 @@
 		EDE67F9E25DAF7CD00A04952 /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track.mp3; sourceTree = "<group>"; };
 		EDE67FA425DAF86400A04952 /* WaveformExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformExampleView.swift; sourceTree = "<group>"; };
 		EDE67FA525DAF86400A04952 /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		EDE67FA925DD675A00A04952 /* AudioRecipes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioRecipes.entitlements; sourceTree = "<group>"; };
 		FAFB4C0125D22BDE00F64CB1 /* WavetableArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavetableArrayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +112,7 @@
 		4F8174C625CC2C750023383D /* AudioRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				EDE67FA925DD675A00A04952 /* AudioRecipes.entitlements */,
 				EDE67F9E25DAF7CD00A04952 /* track.mp3 */,
 				4F8174C725CC2C750023383D /* AudioRecipesApp.swift */,
 				4F8174C925CC2C750023383D /* ContentView.swift */,
@@ -479,6 +481,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = AudioRecipes/AudioRecipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"AudioRecipes/Preview Content\"";
 				DEVELOPMENT_TEAM = 58W8WV39Y9;
@@ -491,6 +494,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MattPfeiffer.AudioRecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -503,6 +507,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = AudioRecipes/AudioRecipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"AudioRecipes/Preview Content\"";
 				DEVELOPMENT_TEAM = 58W8WV39Y9;
@@ -515,6 +520,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MattPfeiffer.AudioRecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
