@@ -9,7 +9,7 @@ class Conductor : ObservableObject{
     /// Single shared data model
     static let shared = Conductor()
     
-    var testInputType : TestInputType = .microphone {
+    @Published var testInputType : TestInputType = .microphone {
         didSet{
             setupAudioType()
         }
@@ -32,12 +32,18 @@ class Conductor : ObservableObject{
     var osc: DynamicOscillator
     let oscMixer: Mixer
     
-    
     @Published var pan = 0.0 {
         didSet {
             panner.pan = AUValue(pan)
         }
     }
+    
+    @Published var masterFaderGain = 1.0 {
+        didSet {
+            masterFader.gain = AUValue(masterFaderGain)
+        }
+    }
+    
     let panner: Panner
     
     var player: AudioPlayer
@@ -127,10 +133,10 @@ class Conductor : ObservableObject{
         
     }
     
-    enum TestInputType: String, Equatable, CaseIterable  {
-        case microphone = "Input"
+    public enum TestInputType: String, Equatable, CaseIterable  {
+        case microphone = "Microphone"
         case oscillator = "Oscillator"
-        case player = "MP3 File"
+        case player = "Audio Player"
         var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
     }
     
@@ -265,13 +271,18 @@ class Conductor : ObservableObject{
         if testInputType == .oscillator {
             osc.play()
             player.stop()
+            silentMicMixer.volume = 0.0
             masterFader.gain = 1.0
         } else if testInputType == .player {
             player.play()
             osc.stop()
+            silentMicMixer.volume = 0.0
             masterFader.gain = 1.0
         } else if testInputType == .microphone {
             // Avoid feedback!
+            osc.stop()
+            player.stop()
+            silentMicMixer.volume = 1.0
             masterFader.gain = 0.0
         }
     }

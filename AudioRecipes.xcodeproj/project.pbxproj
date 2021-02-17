@@ -39,6 +39,7 @@
 		EDE67F9F25DAF7CD00A04952 /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EDE67F9E25DAF7CD00A04952 /* track.mp3 */; };
 		EDE67FA625DAF86400A04952 /* WaveformExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE67FA425DAF86400A04952 /* WaveformExampleView.swift */; };
 		EDE67FA725DAF86400A04952 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE67FA525DAF86400A04952 /* WaveformView.swift */; };
+		EDE67FAD25DD7A6200A04952 /* WaveformModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE67FAC25DD7A6200A04952 /* WaveformModel.swift */; };
 		FAFB4C0225D22BDE00F64CB1 /* WavetableArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFB4C0125D22BDE00F64CB1 /* WavetableArrayView.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		EDE67FA425DAF86400A04952 /* WaveformExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformExampleView.swift; sourceTree = "<group>"; };
 		EDE67FA525DAF86400A04952 /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		EDE67FA925DD675A00A04952 /* AudioRecipes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioRecipes.entitlements; sourceTree = "<group>"; };
+		EDE67FAC25DD7A6200A04952 /* WaveformModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformModel.swift; sourceTree = "<group>"; };
 		FAFB4C0125D22BDE00F64CB1 /* WavetableArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavetableArrayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,6 +232,7 @@
 		EDE67FA325DAF85400A04952 /* WaveformView */ = {
 			isa = PBXGroup;
 			children = (
+				EDE67FAC25DD7A6200A04952 /* WaveformModel.swift */,
 				EDE67FA425DAF86400A04952 /* WaveformExampleView.swift */,
 				EDE67FA525DAF86400A04952 /* WaveformView.swift */,
 			);
@@ -352,6 +355,7 @@
 				4F8174F625CC2E460023383D /* FilterExampleView.swift in Sources */,
 				4F81751B25CC2F7C0023383D /* ColorHelpers.swift in Sources */,
 				EDE67FA625DAF86400A04952 /* WaveformExampleView.swift in Sources */,
+				EDE67FAD25DD7A6200A04952 /* WaveformModel.swift in Sources */,
 				4FF23FF925D2C2B1002EC8C1 /* WavetableArrayExampleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

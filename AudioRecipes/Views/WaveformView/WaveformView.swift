@@ -1,44 +1,6 @@
 import AudioKit
 import SwiftUI
 
-class WaveformModel: ObservableObject {
-    
-    static let bufferSize = 256
-    private var NUM_POINTS = 256
-    
-    @Published var waveformBuffer: [Float] = Array(repeating: 0.0, count: bufferSize)
-    
-    var nodeTap: RawDataTap!
-    var node: Node?
-    var stereoMode : StereoMode
-    
-    var bottomAmp: CGFloat = -1.0
-    var topAmp: CGFloat = 1.0
-    
-    init(stereoMode: StereoMode = .center) {
-        self.stereoMode = stereoMode
-    }
-    
-    func updateNode(_ node: Node) {
-        if node !== self.node {
-            self.node = node
-            nodeTap = RawDataTap(node,bufferSize: UInt32(NUM_POINTS)) { bufferData in
-                DispatchQueue.main.async {
-                    self.pushData(bufferData)
-                }
-            }
-            nodeTap.start()
-        }
-    }
-
-    func pushData(_ data: [Float]) {
-        // validate data
-        // extra array necessary?
-        waveformBuffer = data
-    }
-
-}
-
 struct WaveformView: View {
     @StateObject var waveformModel = WaveformModel()
     var node: Node
@@ -56,19 +18,15 @@ struct WaveformView: View {
     
     @State var shouldDisplayAxisLabels: Bool = false
     
-    
-    init(_ node: Node,stereoMode : StereoMode = .center, numberOfSegments: Int = 20){
+    init(_ node: Node, stereoMode : StereoMode = .center, numberOfSegments: Int = 20){
         self.node = node
         self._stereoMode = State(initialValue: stereoMode)
     }
-//    init(_ node: Node, color: Color,stereoMode : StereoMode = .center, numberOfSegments: Int = 20){
-//        self.node = node
-//        self._stereoMode = State(initialValue: stereoMode)
-//    }
-//    init(_ node: Node, colors: Gradient,stereoMode : StereoMode = .center, numberOfSegments: Int = 20){
-//        self.node = node
-//        self._stereoMode = State(initialValue: stereoMode)
-//    }
+    init(_ node: Node, color: Color,stereoMode : StereoMode = .center, numberOfSegments: Int = 20){
+        self.node = node
+        self._stereoMode = State(initialValue: stereoMode)
+        self._strokeColor = State(initialValue: color)
+    }
     
     var body: some View {
        
